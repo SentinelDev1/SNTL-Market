@@ -22,7 +22,7 @@ contract DeployEscrow is ReentrancyGuard {
     
     fallback() external payable {}
     
-    // Owner is the team's Gnosis Safe multisig address with 2/3 confirmations needed, Keeper and FeeAddress can be changed by Owner
+    // Owner is the team's Gnosis Safe multisig address with 2/3 confirmations needed to transact, Keeper and FeeAddress can be changed by Owner
     constructor () {
         Owner = 0xeA4D1a08300247F6298FdAF2F68977Af7bf93d01;
         Keeper = 0x26DcbdA37FC1D8abF1FF016947a11Ef972dCb306;
