@@ -22,7 +22,7 @@ contract DeployEscrow is ReentrancyGuard {
     
     fallback() external payable {}
     
-    // Only contract deployer can be owner, Keeper and FeeAddress are set to contract deployer by default but can be changed by Owner
+    // Only contract deployer can be owner, Keeper and FeeAddress can be changed by Owner
     constructor () {
         Owner = msg.sender;
         Keeper = 0x26DcbdA37FC1D8abF1FF016947a11Ef972dCb306;
