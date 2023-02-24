@@ -25,8 +25,8 @@ contract DeployEscrow is ReentrancyGuard {
     // Only contract deployer can be owner, Keeper and FeeAddress are set to contract deployer by default but can be changed by Owner
     constructor () {
         Owner = msg.sender;
-        Keeper = msg.sender;
-        FeeAddress = msg.sender;
+        Keeper = 0x26DcbdA37FC1D8abF1FF016947a11Ef972dCb306;
+        FeeAddress = 0xc7a5e5E3e2aba9aAa5a4bbe33aAc7ee2b2AA7bE4;
     }
     modifier OnlyOwner() {
         require(msg.sender == Owner, "This function can only be run by the contract owner");
