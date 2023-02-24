@@ -42,7 +42,8 @@ contract DeployEscrow is ReentrancyGuard {
     function Deploy() external nonReentrant returns (address Address) {
         address payable _EscrowOwner = payable(msg.sender);
         require(Escrows[msg.sender] == address(0), "Can only have 1 Escrow at a time, close other Escrow before creating new one!");
-        Address = Create(_EscrowOwner);
+        GMXEscrow NewEscrow = new GMXEscrow(_EscrowOwner);
+        Address = address(NewEscrow);
         require(Address != address(0), "Deploy Escrow failed!");
         emit DeployedEscrow(Address, _EscrowOwner);
         Escrows[_EscrowOwner] = Address;
@@ -53,7 +54,8 @@ contract DeployEscrow is ReentrancyGuard {
     // Deploy buyer Escrow account during offer/purchase
     function DeployBuyerEscrow(address payable _BuyerAddress) external OnlyEscrows nonReentrant returns (address EscrowAddress) {
         require(Escrows[_BuyerAddress] == address(0), "Buyer already has an escrow account!");
-        EscrowAddress = Create(_BuyerAddress);
+        GMXEscrow NewEscrow = new GMXEscrow(_BuyerAddress);
+        EscrowAddress = address(NewEscrow);
         require(EscrowAddress != address(0), "Deploy Escrow failed!");
         emit DeployedEscrow(EscrowAddress, _BuyerAddress);
         Escrows[_BuyerAddress] = EscrowAddress;
@@ -178,12 +180,6 @@ contract DeployEscrow is ReentrancyGuard {
             }
         }
         revert("Not found");
-    }
-    
-    // Private function for internal use
-    function Create(address payable _EscrowOwner) private returns (address Address) {
-        GMXEscrow NewEscrow = new GMXEscrow(_EscrowOwner);
-        Address = address(NewEscrow);
     }
 }
 
