@@ -1,4 +1,3 @@
-**Current Deployment Addresses:**
 
 **SNTL Market Main Contract:** 0xB94d6b9d7b13AeF466e7B5CFDf41bA062Ce2C631
 
